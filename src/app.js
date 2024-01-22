@@ -22,4 +22,7 @@ app.get('/books/:id', Book.getById);
 // Route to create a new book
 app.post('/books', Book.create);
 
+// Route to update a book
+app.put('/books/:id', Book.update);
+
 module.exports = app;

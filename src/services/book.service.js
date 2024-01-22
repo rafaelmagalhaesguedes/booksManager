@@ -28,13 +28,27 @@ const getById = async (id) => {
   Books table. It is equivalent to making the query: INSERT INTO Books
   (title, author_id) VALUES (<title>, <author_id>)
 */
-const create = async (title, author_id) => {
-  const book = await Book.create({ title, author_id });
+const create = async (title, author, pageQuantity) => {
+  const book = await Book.create({ title, author, pageQuantity });
 
   return book;
 };
 
+/* 
+  This function uses Sequelize's update method to update a row from the
+  Books table. It is equivalent to making the query: UPDATE Books SET
+  title = <title>, author_id = <author_id> WHERE id = <id>
+
+*/
+const update = async (id, title, author_id) => {
+  const book = await Book.update({ title, author_id }, { where: { id } });
+
+  return book;
+}
+
 module.exports = {
   getAll,
   getById,
+  create,
+  update,
 };
