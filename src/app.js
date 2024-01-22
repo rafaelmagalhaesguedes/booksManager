@@ -1,9 +1,13 @@
+// src/app.js
+
 const express = require('express');
+
+const Book = require('./controllers/book.controller');
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+app.use(express.json());
 
-app.listen(3000, () => console.log('App listening on port 3000!'));
+app.get('/book', Book.getAll);
+
+module.exports = app;
