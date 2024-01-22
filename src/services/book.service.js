@@ -3,8 +3,8 @@
 const { Book } = require('../models');
 
 /*
-    This function uses Sequelize's findAll method to fetch all rows from the
-    Books table It is equivalent to making the query: SELECT * FROM Books
+  This function uses Sequelize's findAll method to fetch all rows from the
+  Books table It is equivalent to making the query: SELECT * FROM Books
 */
 const getAll = async () => {
   const books = await Book.findAll();
@@ -13,12 +13,23 @@ const getAll = async () => {
 };
 
 /* 
-    This function uses Sequelize's findByPk method to fetch a single row from
-    the Books table based on its primary key (id). It is equivalent to making
-    the query: SELECT * FROM Books WHERE id = <id>
+  This function uses Sequelize's findByPk method to fetch a single row from
+  the Books table based on its primary key (id). It is equivalent to making
+  the query: SELECT * FROM Books WHERE id = <id>
 */
 const getById = async (id) => {
   const book = await Book.findByPk(id);
+
+  return book;
+};
+
+/* 
+  This function uses Sequelize's create method to insert a new row into the
+  Books table. It is equivalent to making the query: INSERT INTO Books
+  (title, author_id) VALUES (<title>, <author_id>)
+*/
+const create = async (title, author_id) => {
+  const book = await Book.create({ title, author_id });
 
   return book;
 };

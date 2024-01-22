@@ -14,4 +14,7 @@ app.get('/book', Book.getAll);
 // Route to get a book by id
 app.get('/book/:id', Book.getById);
 
+// Route to create a new book
+app.post('/book', Book.create);
+
 module.exports = app;

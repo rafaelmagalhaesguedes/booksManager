@@ -21,7 +21,18 @@ const getById = async (req, res) => {
   }
 };
 
+const create = async (req, res) => {
+  try {
+    const { title, author_id } = req.body;
+    const book = await BookService.create(title, author_id);
+    return res.status(201).json(book);
+  } catch (e) {
+    res.status(500).json({ message: 'Error with connection!' });
+  }
+};
+
 module.exports = {
   getAll,
   getById,
+  create,
 };
