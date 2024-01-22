@@ -46,9 +46,21 @@ const update = async (id, title, author_id) => {
   return book;
 }
 
+/* 
+  This function uses Sequelize's destroy method to delete a row from the
+  Books table. It is equivalent to making the query: DELETE FROM Books
+  WHERE id = <id>
+*/
+const exclude = async (id) => {
+  const book = await Book.destroy({ where: { id } });
+
+  return book;
+}
+
 module.exports = {
   getAll,
   getById,
   create,
   update,
+  exclude,
 };

@@ -42,9 +42,20 @@ const update = async (req, res) => {
   }
 };
 
+const exclude = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await BookService.exclude(id);
+    res.status(200).json({ message: 'Deleted book!' });
+  } catch (e) {
+    res.status(500).json({ message: 'Error with connection!' });
+  }
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   update,
+  exclude,
 };
