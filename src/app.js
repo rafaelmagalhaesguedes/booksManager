@@ -8,13 +8,18 @@ const app = express();
 
 app.use(express.json());
 
+// Route health check
+app.get('/', (_req, res) => {
+  res.status(200).json({ message: 'Server is running!' });
+});
+
 // Route to list all books
-app.get('/book', Book.getAll);
+app.get('/books', Book.getAll);
 
 // Route to get a book by id
-app.get('/book/:id', Book.getById);
+app.get('/books/:id', Book.getById);
 
 // Route to create a new book
-app.post('/book', Book.create);
+app.post('/books', Book.create);
 
 module.exports = app;
