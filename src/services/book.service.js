@@ -5,9 +5,12 @@ const { Book } = require('../models');
 /*
   This function uses Sequelize's findAll method to fetch all rows from the
   Books table It is equivalent to making the query: SELECT * FROM Books
+  Order by title ASC
 */
 const getAll = async () => {
-  const books = await Book.findAll();
+  const books = await Book.findAll({
+    order: [['title', 'ASC']],
+  });
 
   return books;
 };
@@ -27,9 +30,13 @@ const getById = async (id) => {
   This function uses Sequelize's findOne method to fetch a single row from
   the Books table based on a specific column. It is equivalent to making the
   query: SELECT * FROM Books WHERE author = <author>
+  Order by title ASC
 */
 const getByAuthor = async (author) => {
-  const book = await Book.findAll({ where: { author } });
+  const books = await Book.findAll({
+    where: { author },
+    order: [['title', 'ASC']],
+  });
 
   return book;
 };
