@@ -46,7 +46,7 @@ const getByAuthor = async (author) => {
   Books table. It is equivalent to making the query: INSERT INTO Books
   (title, author_id) VALUES (<title>, <author_id>)
 */
-const create = async (title, author, pageQuantity) => {
+const create = async (title, author, pageQuantity, publisher) => {
   const book = await Book.create({ title, author, pageQuantity, publisher });
 
   return book;
