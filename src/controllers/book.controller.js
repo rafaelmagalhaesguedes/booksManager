@@ -2,9 +2,15 @@
 const BookService = require('../services/book.service');
 
 const getAll = async (_req, res) => {
+  const { author } = _req.query;
   try {
-    const books = await BookService.getAll();
-    return res.status(200).json(books);
+    let books;
+    if (author) {
+      books = await BookService.getByAuthor(author);
+    } else {
+      books = await BookService.getAll();
+    }
+    res.status(200).json(books);
   } catch (e) {
     res.status(500).json({ message: 'Error with connection!' });
   }
