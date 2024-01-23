@@ -40,8 +40,8 @@ const getByAuthor = async (req, res) => {
 
 const create = async (req, res) => {
   try {
-    const { title, author, pageQuantity } = req.body;
-    const book = await BookService.create(title, author, pageQuantity);
+    const { title, author, pageQuantity, publisher } = req.body;
+    const book = await BookService.create(title, author, pageQuantity, publisher);
     return res.status(201).json(book);
   } catch (e) {
     res.status(500).json({ message: 'Error with connection!' });
@@ -50,9 +50,9 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    const { title, author_id } = req.body;
+    const { title, author, pageQuantity, publisher } = req.body;
     const { id } = req.params;
-    const book = await BookService.update(id, title, author_id);
+    const book = await BookService.update(id, title, author, pageQuantity, publisher);
     return res.status(200).json(book);
   } catch (e) {
     res.status(500).json({ message: 'Error with connection!' });

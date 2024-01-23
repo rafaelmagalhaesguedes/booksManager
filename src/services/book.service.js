@@ -47,7 +47,7 @@ const getByAuthor = async (author) => {
   (title, author_id) VALUES (<title>, <author_id>)
 */
 const create = async (title, author, pageQuantity) => {
-  const book = await Book.create({ title, author, pageQuantity });
+  const book = await Book.create({ title, author, pageQuantity, publisher });
 
   return book;
 };
@@ -55,11 +55,11 @@ const create = async (title, author, pageQuantity) => {
 /* 
   This function uses Sequelize's update method to update a row from the
   Books table. It is equivalent to making the query: UPDATE Books SET
-  title = <title>, author_id = <author_id> WHERE id = <id>
+  title = <title>, author = <author> WHERE id = <id>
 
 */
-const update = async (id, title, author_id) => {
-  const book = await Book.update({ title, author_id }, { where: { id } });
+const update = async (id, title, author, pageQuantity, publisher) => {
+  const book = await Book.update({ title, author, pageQuantity, publisher }, { where: { id } });
 
   return book;
 }
