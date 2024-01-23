@@ -17,6 +17,9 @@ app.get('/books', Book.getAll);
 // Route to get a book by id
 app.get('/books/:id', Book.getById);
 
+// Route to get a book by author
+app.get('/books/author/:author', Book.getByAuthor);
+
 // Route to create a new book
 app.post('/books', Book.create);
 

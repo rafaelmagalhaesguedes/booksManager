@@ -21,6 +21,17 @@ const getById = async (req, res) => {
   }
 };
 
+const getByAuthor = async (req, res) => {
+  try {
+    const { author } = req.params;
+    const book = await BookService.getByAuthor(author);
+    if (!book) return res.status(404).json({ message: 'Not found' });
+    return res.status(200).json(book);
+  } catch (e) {
+    res.status(500).json({ message: 'Error with connection!' });
+  }
+};
+
 const create = async (req, res) => {
   try {
     const { title, author, pageQuantity } = req.body;
@@ -55,6 +66,7 @@ const exclude = async (req, res) => {
 module.exports = {
   getAll,
   getById,
+  getByAuthor,
   create,
   update,
   exclude,

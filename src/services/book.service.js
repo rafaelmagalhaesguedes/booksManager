@@ -24,6 +24,17 @@ const getById = async (id) => {
 };
 
 /* 
+  This function uses Sequelize's findOne method to fetch a single row from
+  the Books table based on a specific column. It is equivalent to making the
+  query: SELECT * FROM Books WHERE author = <author>
+*/
+const getByAuthor = async (author) => {
+  const book = await Book.findAll({ where: { author } });
+
+  return book;
+};
+
+/* 
   This function uses Sequelize's create method to insert a new row into the
   Books table. It is equivalent to making the query: INSERT INTO Books
   (title, author_id) VALUES (<title>, <author_id>)
@@ -60,6 +71,7 @@ const exclude = async (id) => {
 module.exports = {
   getAll,
   getById,
+  getByAuthor,
   create,
   update,
   exclude,
